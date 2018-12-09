@@ -1,0 +1,381 @@
+{
+    "access": [
+        {
+            "group": "TexasTech",
+            "Reports": [
+                {
+                    "name": "MapPopup",
+                    "location": "../reports/MapBox.html",
+                    "title": "Texas Tech - Demo",
+                    "MapBoxAccessToken": "pk.eyJ1IjoiamFtZXN5dTA3MjUiLCJhIjoiY2psdjdramFoMHJjYzNxbXBybGVsZndzbCJ9.t9RLryQTSEgef5RRD6AEvg",
+                    "mapLat": "29.6871691",
+                    "maplong": "-95.40806",
+                    "zoom": 9,
+                    "attribute": [
+                        {
+                            "node": "Red-Raider 1",
+                            "size": "large", 
+                            "symbol": "1",
+                            "type": "Point",
+                            "latitude": "33.587949",
+                            "longitude": "-101.784539",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20last%28%22relative_humidity_2%22%29%2C%20last%28%22temperature_1%22%29%2C%20last%28%22analog_in_4%22%29%2C%20last%28%22latitude1%22%29%2C%20last%28%22longitude1%22%29%2C%20last%28%22digital_in_7%22%29%2C%20time%20FROM%20%22TexasTech%22.%22autogen%22.%22gas-field_ttu-001%22%20WHERE%20time%20%3E%20now%28%29%20-%2024m",
+                            "LastReadURL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20time%2C%20analog_in_4%20FROM%20%22TexasTech%22.%22autogen%22.%22gas-field_ttu-001%22%20WHERE%20analog_in_4%20%3E%2010%20GROUP%20BY%20%2A%20ORDER%20BY%20DESC%20LIMIT%201",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?present=true&lower=now%28%29%20-%206h&tempVars%5BmeasurementVar%5D=gas-field_ttu-001",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        }
+                    ]
+                },
+                {
+                    "name": "Chronograf",
+                    "location": "../reports/Chronograf.html",
+                    "title": "Texas Tech - Demo",
+                    "url": "http://52.204.180.208:8888/sources/1/dashboards/12?present=true"                    
+                },
+                {
+                    "name": "Signal",
+                    "location": "../reports/Signal.html",
+                    "title": "Signal - Demo",
+                    "url": "http://ttu.centrexsolutions.com:1880/ui/#/1"                    
+                }
+            ]
+        },
+        {
+            "group": "GasActivated",
+            "Reports": [
+                {
+                    "name": "MapPopup",
+                    "location": "../reports/MapBox.html",
+                    "title": "Gas Activated: Coil Chem Demo",
+                    "MapBoxAccessToken": "pk.eyJ1IjoiamFtZXN5dTA3MjUiLCJhIjoiY2psdjdramFoMHJjYzNxbXBybGVsZndzbCJ9.t9RLryQTSEgef5RRD6AEvg",
+                    "mapLat": "35.1235361",
+                    "maplong": "-97.4530497",
+                    "zoom": 17,
+                    "attribute": [
+                        {
+                            "node": "Gas Compressor Station 1",
+                            "size": "large", 
+                            "symbol": "fuel",
+                            "type": "Point",
+                            "latitude": "35.1235361",
+                            "longitude": "-97.4530497",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20mean%28%22humidity%22%29%20AS%20%22mean_humidity%22%2C%20mean%28%22temperature%22%29%20AS%20%22mean_temperature%22%2C%20mean%28%22concentration%22%29%20AS%20%22mean_concentration%22%20FROM%20%22Gas_Activated%22.%22autogen%22.%22gas_node1%22%20WHERE%20time%20%3E%20now%28%29%20-%2015s%20AND%20%22node%22%3D%27GAS001%27%20GROUP%20BY%20time%2810s%29%20FILL%28previous%29",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?measurementVar=gastestdevice&present=true",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        }
+                    ]
+                },
+                {
+                    "name": "Chronograf",
+                    "location": "../reports/Chronograf.html",
+                    "title": "Chronograf - Demo",
+                    "url": "http://52.204.180.208:8888/sources/1/dashboards/2?present=true"                    
+                },
+                {
+                    "name": "Signal",
+                    "location": "../reports/Signal.html",
+                    "title": "Signal - Demo",
+                    "url": "http://ttu.centrexsolutions.com:1880/ui/#/1"                    
+                }
+            ]
+        }, 
+        {
+            "group": "DHS",
+            "Reports": [
+                {
+                    "name": "MapPopup",
+                    "location": "../reports/MapBox.html",
+                    "title": "DHS - Demo",
+                    "MapBoxAccessToken": "pk.eyJ1IjoiamFtZXN5dTA3MjUiLCJhIjoiY2psdjdramFoMHJjYzNxbXBybGVsZndzbCJ9.t9RLryQTSEgef5RRD6AEvg",
+                    "mapLat": "29.747656",
+                    "maplong": "-95.288196",
+                    "zoom": 16,
+                    "attribute": [
+                        {
+                            "node": "First Responder 1",
+                            "size": "large", 
+                            "symbol": "1",
+                            "type": "Point",
+                            "latitude": "29.745200",
+                            "longitude": "-95.279877",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20last%28%22relative_humidity_2%22%29%2C%20last%28%22temperature_1%22%29%2C%20last%28%22analog_in_4%22%29%2C%20last%28%22latitude1%22%29%2C%20last%28%22longitude1%22%29%2C%20last%28%22digital_in_7%22%29%2C%20time%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-001%22%20WHERE%20time%20%3E%20now%28%29%20-%2024m",
+                            "LastReadURL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20time%2C%20analog_in_4%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-001%22%20WHERE%20analog_in_4%20%3E%2010%20GROUP%20BY%20%2A%20ORDER%20BY%20DESC%20LIMIT%201",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?present=true&lower=now%28%29%20-%206h&tempVars%5BmeasurementVar%5D=gas-field_stm-001",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "First Responder 2",
+                            "size": "large", 
+                            "symbol": "2",
+                            "type": "Point",
+                            "latitude": "29.745300",
+                            "longitude": "-95.279877",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20last%28%22relative_humidity_2%22%29%2C%20last%28%22temperature_1%22%29%2C%20last%28%22analog_in_4%22%29%2C%20last%28%22latitude1%22%29%2C%20last%28%22longitude1%22%29%2C%20last%28%22digital_in_7%22%29%2C%20time%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-002%22%20WHERE%20time%20%3E%20now%28%29%20-%2024m",
+                            "LastReadURL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20time%2C%20analog_in_4%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-002%22%20WHERE%20analog_in_4%20%3E%2010%20GROUP%20BY%20%2A%20ORDER%20BY%20DESC%20LIMIT%201",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?present=true&lower=now%28%29%20-%206h&tempVars%5BmeasurementVar%5D=gas-field_stm-002",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "First Responder3",
+                            "size": "large", 
+                            "symbol": "3",
+                            "type": "Point",
+                            "latitude": "29.748762",
+                            "longitude": "-95.292241",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20last%28%22relative_humidity_2%22%29%2C%20last%28%22temperature_1%22%29%2C%20last%28%22analog_in_4%22%29%2C%20last%28%22latitude1%22%29%2C%20last%28%22longitude1%22%29%2C%20last%28%22digital_in_7%22%29%2C%20time%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-003%22%20WHERE%20time%20%3E%20now%28%29%20-%2024m",
+                            "LastReadURL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20time%2C%20analog_in_4%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-003%22%20WHERE%20analog_in_4%20%3E%2010%20GROUP%20BY%20%2A%20ORDER%20BY%20DESC%20LIMIT%201",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?present=true&lower=now%28%29%20-%206h&tempVars%5BmeasurementVar%5D=gas-field_stm-003",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "First Responder 4",
+                            "size": "large", 
+                            "symbol": "4",
+                            "type": "Point",
+                            "latitude": "29.745200",
+                            "longitude": "-95.279777",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20last%28%22relative_humidity_2%22%29%2C%20last%28%22temperature_1%22%29%2C%20last%28%22analog_in_4%22%29%2C%20last%28%22latitude1%22%29%2C%20last%28%22longitude1%22%29%2C%20last%28%22digital_in_7%22%29%2C%20time%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-004%22%20WHERE%20time%20%3E%20now%28%29%20-%2024m",
+                            "LastReadURL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20time%2C%20analog_in_4%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-004%22%20WHERE%20analog_in_4%20%3E%2010%20GROUP%20BY%20%2A%20ORDER%20BY%20DESC%20LIMIT%201",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?present=true&lower=now%28%29%20-%206h&tempVars%5BmeasurementVar%5D=gas-field_stm-004",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "First Responder 5",
+                            "size": "large", 
+                            "symbol": "5",
+                            "type": "Point",
+                            "latitude": "29.748662",
+                            "longitude": "-95.292241",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20last%28%22relative_humidity_2%22%29%2C%20last%28%22temperature_1%22%29%2C%20last%28%22analog_in_4%22%29%2C%20last%28%22latitude1%22%29%2C%20last%28%22longitude1%22%29%2C%20last%28%22digital_in_7%22%29%2C%20time%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-005%22%20WHERE%20time%20%3E%20now%28%29%20-%2024m",
+                            "LastReadURL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20time%2C%20analog_in_4%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-005%22%20WHERE%20analog_in_4%20%3E%2010%20GROUP%20BY%20%2A%20ORDER%20BY%20DESC%20LIMIT%201",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?present=true&lower=now%28%29%20-%206h&tempVars%5BmeasurementVar%5D=gas-field_stm-005",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "First Responder 6",
+                            "size": "large", 
+                            "symbol": "6",
+                            "type": "Point",
+                            "latitude": "29.745300",
+                            "longitude": "-95.279777",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20last%28%22relative_humidity_2%22%29%2C%20last%28%22temperature_1%22%29%2C%20last%28%22analog_in_4%22%29%2C%20last%28%22latitude1%22%29%2C%20last%28%22longitude1%22%29%2C%20last%28%22digital_in_7%22%29%2C%20time%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-006%22%20WHERE%20time%20%3E%20now%28%29%20-%2024m",
+                            "LastReadURL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20time%2C%20analog_in_4%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-006%22%20WHERE%20analog_in_4%20%3E%2010%20GROUP%20BY%20%2A%20ORDER%20BY%20DESC%20LIMIT%201",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?present=true&lower=now%28%29%20-%206h&tempVars%5BmeasurementVar%5D=gas-field_stm-006",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "First Responder 7",
+                            "size": "large", 
+                            "symbol": "7",
+                            "type": "Point",
+                            "latitude": "29.745400",
+                            "longitude": "-95.279777",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20last%28%22relative_humidity_2%22%29%2C%20last%28%22temperature_1%22%29%2C%20last%28%22analog_in_4%22%29%2C%20last%28%22latitude1%22%29%2C%20last%28%22longitude1%22%29%2C%20last%28%22digital_in_7%22%29%2C%20time%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-007%22%20WHERE%20time%20%3E%20now%28%29%20-%2024m",
+                            "LastReadURL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20time%2C%20analog_in_4%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-007%22%20WHERE%20analog_in_4%20%3E%2010%20GROUP%20BY%20%2A%20ORDER%20BY%20DESC%20LIMIT%201",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?present=true&lower=now%28%29%20-%206h&tempVars%5BmeasurementVar%5D=gas-field_stm-007",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "First Responder 8",
+                            "size": "large", 
+                            "symbol": "8",
+                            "type": "Point",
+                            "latitude": "29.748662",
+                            "longitude": "-95.292141",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20last%28%22relative_humidity_2%22%29%2C%20last%28%22temperature_1%22%29%2C%20last%28%22analog_in_4%22%29%2C%20last%28%22latitude1%22%29%2C%20last%28%22longitude1%22%29%2C%20last%28%22digital_in_7%22%29%2C%20time%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-008%22%20WHERE%20time%20%3E%20now%28%29%20-%2024m",
+                            "LastReadURL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20time%2C%20analog_in_4%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-008%22%20WHERE%20analog_in_4%20%3E%2010%20GROUP%20BY%20%2A%20ORDER%20BY%20DESC%20LIMIT%201",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?present=true&lower=now%28%29%20-%206h&tempVars%5BmeasurementVar%5D=gas-field_stm-008",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "First Responder 9",
+                            "size": "large", 
+                            "symbol": "9",
+                            "type": "Point",
+                            "latitude": "29.745400",
+                            "longitude": "-95.279877",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20last%28%22relative_humidity_2%22%29%2C%20last%28%22temperature_1%22%29%2C%20last%28%22analog_in_4%22%29%2C%20last%28%22latitude1%22%29%2C%20last%28%22longitude1%22%29%2C%20last%28%22digital_in_7%22%29%2C%20time%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-009%22%20WHERE%20time%20%3E%20now%28%29%20-%2024m",
+                            "LastReadURL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20time%2C%20analog_in_4%20FROM%20%22DHS%22.%22autogen%22.%22gas-field_stm-009%22%20WHERE%20analog_in_4%20%3E%2010%20GROUP%20BY%20%2A%20ORDER%20BY%20DESC%20LIMIT%201",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?present=true&lower=now%28%29%20-%206h&tempVars%5BmeasurementVar%5D=gas-field_stm-009",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        }
+                    ]
+                },
+                {
+                    "name": "SensorUp",
+                    "sensor": [
+                        {   
+                            "name": "gas-field_stm-001",
+                            "methane": "54609",
+                            "temp": "54601",
+                            "humidity": "54599"
+                        },
+                        {   
+                            "name": "gas-field_stm-002",
+                            "methane": "54787",
+                            "temp": "54797",
+                            "humidity": "54788"
+                        },
+                        {   
+                            "name": "gas-field_stm-003",
+                            "methane": "61978",
+                            "temp": "61973",
+                            "humidity": "61977"
+                        },
+                        {   
+                            "name": "gas-field_stm-004",
+                            "methane": "61998",
+                            "temp": "62006",
+                            "humidity": "62001"
+                        },
+                        {   
+                            "name": "gas-field_stm-005",
+                            "methane": "62015",
+                            "temp": "62025",
+                            "humidity": "62021"
+                        },
+                        {   
+                            "name": "gas-field_stm-006",
+                            "methane": "62044",
+                            "temp": "62043",
+                            "humidity": "62050"
+                        },
+                        {   
+                            "name": "gas-field_stm-007",
+                            "methane": "62073",
+                            "temp": "62075",
+                            "humidity": "62072"
+                        },
+                        {   
+                            "name": "gas-field_stm-008",
+                            "methane": "62092",
+                            "temp": "62093",
+                            "humidity": "62091"
+                        },
+                        {   
+                            "name": "gas-field_stm-009",
+                            "methane": "62118",
+                            "temp": "62112",
+                            "humidity": "62108"
+                        }
+                    ]
+                },
+                {
+                    "name": "Chronograf",
+                    "location": "../reports/Chronograf.html",
+                    "title": "DHS - Demo",
+                    "url": "http://52.204.180.208:8888/sources/1/dashboards/9?present=true"                    
+                },
+                {
+                    "name": "Signal",
+                    "location": "../reports/Signal.html",
+                    "title": "Signal - Demo",
+                    "url": "http://ttu.centrexsolutions.com:1880/ui/#/1"                    
+                }
+            ]
+        },
+        {
+            "group": "Halliburton",
+            "Reports": [
+                {
+                    "name": "MapPopup",
+                    "location": "../reports/MapBox.html",
+                    "title": "DHS - Demo",
+                    "MapBoxAccessToken": "pk.eyJ1IjoiamFtZXN5dTA3MjUiLCJhIjoiY2psdjdramFoMHJjYzNxbXBybGVsZndzbCJ9.t9RLryQTSEgef5RRD6AEvg",
+                    "mapLat": "29.7062371",
+                    "maplong": "-95.5621982",
+                    "zoom": 17,
+                    "attribute": [
+                        {
+                            "node": "SE Area",
+                            "size": "large", 
+                            "symbol": "building",
+                            "type": "Point",
+                            "latitude": "29.7057371",
+                            "longitude": "-95.5611982",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20mean%28%22humidity%22%29%20AS%20%22mean_humidity%22%2C%20mean%28%22temperature%22%29%20AS%20%22mean_temperature%22%2C%20mean%28%22concentration%22%29%20AS%20%22mean_concentration%22%20FROM%20%22Gas_Activated%22.%22autogen%22.%22gas_node1%22%20WHERE%20time%20%3E%20now%28%29%20-%2015s%20AND%20%22node%22%3D%27GAS001%27%20GROUP%20BY%20time%2810s%29%20FILL%28previous%29",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?measurementVar=gastestdevice&present=true",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "NE Area",
+                            "size": "large", 
+                            "symbol": "building",
+                            "type": "Point",
+                            "latitude": "29.7072371",
+                            "longitude": "-95.5612982",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20mean%28%22humidity%22%29%20AS%20%22mean_humidity%22%2C%20mean%28%22temperature%22%29%20AS%20%22mean_temperature%22%2C%20mean%28%22concentration%22%29%20AS%20%22mean_concentration%22%20FROM%20%22Gas_Activated%22.%22autogen%22.%22gas_node1%22%20WHERE%20time%20%3E%20now%28%29%20-%2015s%20AND%20%22node%22%3D%27GAS001%27%20GROUP%20BY%20time%2810s%29%20FILL%28previous%29",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?measurementVar=gastestdevice&present=true",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "NW Area",
+                            "size": "large", 
+                            "symbol": "building",
+                            "type": "Point",
+                            "latitude": "29.7072371",
+                            "longitude": "-95.5621982",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20mean%28%22humidity%22%29%20AS%20%22mean_humidity%22%2C%20mean%28%22temperature%22%29%20AS%20%22mean_temperature%22%2C%20mean%28%22concentration%22%29%20AS%20%22mean_concentration%22%20FROM%20%22Gas_Activated%22.%22autogen%22.%22gas_node1%22%20WHERE%20time%20%3E%20now%28%29%20-%2015s%20AND%20%22node%22%3D%27GAS001%27%20GROUP%20BY%20time%2810s%29%20FILL%28previous%29",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?measurementVar=gastestdevice&present=true",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        },
+                        {
+                            "node": "SW Area",
+                            "size": "large", 
+                            "symbol": "building",
+                            "type": "Point",
+                            "latitude": "29.7057371",
+                            "longitude": "-95.5622982",
+                            "URL": "http://52.204.180.208:8086/query?db=Gas_Activated&pretty=true&q=SELECT%20mean%28%22humidity%22%29%20AS%20%22mean_humidity%22%2C%20mean%28%22temperature%22%29%20AS%20%22mean_temperature%22%2C%20mean%28%22concentration%22%29%20AS%20%22mean_concentration%22%20FROM%20%22Gas_Activated%22.%22autogen%22.%22gas_node1%22%20WHERE%20time%20%3E%20now%28%29%20-%2015s%20AND%20%22node%22%3D%27GAS001%27%20GROUP%20BY%20time%2810s%29%20FILL%28previous%29",
+                            "detail": "http://52.204.180.208:8888/sources/1/dashboards/7?measurementVar=gastestdevice&present=true",
+                            "Username": "admin",
+                            "Password": "vWNS2UNTTQbHl36dxDXJ",
+                            "gps": "y"
+                        }
+                    ]
+                },
+                {
+                    "name": "Chronograf",
+                    "location": "../reports/Chronograf.html",
+                    "title": "DHS - Demo",
+                    "url": "http://52.204.180.208:8888/sources/1/dashboards/8?present=true"                    
+                },
+                {
+                    "name": "Signal",
+                    "location": "../reports/Signal.html",
+                    "title": "Signal - Demo",
+                    "url": "http://ttu.centrexsolutions.com:1880/ui/#/1"                    
+                }
+            ]
+        }
+
+    ]
+}
