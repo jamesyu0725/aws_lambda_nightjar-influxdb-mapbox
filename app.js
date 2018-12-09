@@ -1,4 +1,4 @@
-const Influx = require('../../')
+//const Influx = require('../../')
 const express = require('express')
 const http = require('http')
 const os = require('os')
@@ -76,7 +76,7 @@ var app = express();
   // })
 
 
-// Handle CORS Proxy issue
+// Handle CORS Proxy issue URL: https://enable-cors.org/server_expressjs.html
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
