@@ -29,8 +29,7 @@ const influx = new Influx.InfluxDB({
 app.get('/geoloc', function (req, res) {
   influx.query(`
     mean("latitude1") AS "latitude1", mean("longitude1") AS "longitude1" FROM "DHS"."autogen"."gas-field_stm-001"
-    where host = ${Influx.escape.stringLit(os.hostname())}
-    and time > now() - 5m 
+    where time > now() - 5m 
     GROUP BY time(:interval:) 
     FILL(previous)
   `).then(result => {
