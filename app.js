@@ -7,14 +7,17 @@ var app = express();
 
 //Express Influx Documentation: https://node-influx.github.io/manual/tutorial.html
 const influx = new Influx.InfluxDB({
-  host: 'localhost',
-  database: 'express_response_db',
+  database: 'DHS.autogen',
+  host: '52.204.180.208',
+  port: 8888,
+  username: 'DHS',
+  password: 'DHS',  
   schema: [
     {
-      measurement: 'response_times',
+      measurement: 'gas-field_stm-001',
       fields: {
-        path: Influx.FieldType.STRING,
-        duration: Influx.FieldType.INTEGER
+        latitude1: Influx.FieldType.STRING,
+        longitude1: Influx.FieldType.STRING
       },
       tags: [
         'host'
@@ -23,57 +26,60 @@ const influx = new Influx.InfluxDB({
   ]
 })
 
-influx.getDatabaseNames()
-  .then(names => {
-    if (!names.includes('express_response_db')) {
-      return influx.createDatabase('express_response_db');
-    }
+app.get('/geoloc', function (req, res) {
+  influx.query(`
+    mean("latitude1") AS "latitude1", mean("longitude1") AS "longitude1" FROM "DHS"."autogen"."gas-field_stm-001"
+    where host = ${Influx.escape.stringLit(os.hostname())}
+    and time > now() - 5m 
+    GROUP BY time(:interval:) 
+    FILL(previous)
+  `).then(result => {
+    res.json(result)
+  }).catch(err => {
+    res.status(500).send(err.stack)
   })
-  .then(() => {
-    http.createServer(app).listen(3000, function () {
-      console.log('Listening on port 3000')
-    })
-  })
-  .catch(err => {
-    console.error(`Error creating Influx database!`);
-  })
+})
 
-  app.use((req, res, next) => {
-    const start = Date.now()
+// influx.getDatabaseNames()
+//   .then(names => {
+//     if (!names.includes('express_response_db')) {
+//       return influx.createDatabase('express_response_db');
+//     }
+//   })
+//   .then(() => {
+//     http.createServer(app).listen(3000, function () {
+//       console.log('Listening on port 3000')
+//     })
+//   })
+//   .catch(err => {
+//     console.error(`Error creating Influx database!`);
+//   })
+
+//   app.use((req, res, next) => {
+//     const start = Date.now()
   
-    res.on('finish', () => {
-      const duration = Date.now() - start
-      console.log(`Request to ${req.path} took ${duration}ms`);
+//     res.on('finish', () => {
+//       const duration = Date.now() - start
+//       console.log(`Request to ${req.path} took ${duration}ms`);
   
-      influx.writePoints([
-        {
-          measurement: 'response_times',
-          tags: { host: os.hostname() },
-          fields: { duration, path: req.path },
-        }
-      ]).catch(err => {
-        console.error(`Error saving data to InfluxDB! ${err.stack}`)
-      })
-    })
-    return next()
-  })
+//       influx.writePoints([
+//         {
+//           measurement: 'response_times',
+//           tags: { host: os.hostname() },
+//           fields: { duration, path: req.path },
+//         }
+//       ]).catch(err => {
+//         console.error(`Error saving data to InfluxDB! ${err.stack}`)
+//       })
+//     })
+//     return next()
+//   })
   
   // app.get('/', function (req, res) {
   //   setTimeout(() => res.end('Hello world!'), Math.random() * 500)
   // })
   
-  // app.get('/times', function (req, res) {
-  //   influx.query(`
-  //     select * from response_times
-  //     where host = ${Influx.escape.stringLit(os.hostname())}
-  //     order by time desc
-  //     limit 10
-  //   `).then(result => {
-  //     res.json(result)
-  //   }).catch(err => {
-  //     res.status(500).send(err.stack)
-  //   })
-  // })
+
 
 
 // Handle CORS Proxy issue URL: https://enable-cors.org/server_expressjs.html
