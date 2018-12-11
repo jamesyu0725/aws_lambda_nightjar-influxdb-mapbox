@@ -7,7 +7,7 @@ var app = express();
 
 //Express Influx Documentation: https://node-influx.github.io/manual/tutorial.html
 const influx = new Influx.InfluxDB({
-  database: 'DHS.autogen',
+  database: 'DHS',
   host: '52.204.180.208',
   port: 8888,
   username: 'DHS',
