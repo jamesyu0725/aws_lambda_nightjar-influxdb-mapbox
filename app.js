@@ -28,13 +28,9 @@ const influx = new Influx.InfluxDB({
 
 app.get('/', function (req, res) {
   influx.query(`
-    SELECT mean(\"latitude1\"), 
-    mean(\"longitude1\")  
+    SELECT *
     FROM \"DHS\".\"autogen\".\"gas-field_stm-001\"
-    where time > now() - 5m 
-    GROUP BY time(1m) 
-    FILL(previous) 
-    host = ${Influx.escape.stringLit(os.hostname())}
+    where time > now() - 80h
   `).then(result => {
     res.json(result)
   }).catch(err => {
