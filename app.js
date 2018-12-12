@@ -7,11 +7,11 @@ var app = express();
 
 //Express Influx Documentation: https://node-influx.github.io/manual/tutorial.html
 const influx = new Influx.InfluxDB({
-  database: 'DHS',
+  database: 'telegraf',
   host: '52.204.180.208',
-  port: 8888,
-  username: 'DHS',
-  password: 'DHS',  
+  port: 8086, 
+  username: 'admin',
+  password: 'vWNS2UNTTQbHl36dxDXJ',  
   schema: [
     {
       measurement: 'gas-field_stm-001',
@@ -28,9 +28,7 @@ const influx = new Influx.InfluxDB({
 
 app.get('/', function (req, res) {
   influx.query(`
-    SELECT *
-    FROM \"DHS\".\"autogen\".\"gas-field_stm-001\"
-    where time > now() - 80h
+    SELECT * FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 80h
   `).then(result => {
     res.json(result)
   }).catch(err => {
