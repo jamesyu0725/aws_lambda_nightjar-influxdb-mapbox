@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
     SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
     FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
   `).then(result => {
-    var configObj = JSON.parse(JSON.stringify(result));    
+    var configObj = JSON.parse(result);    
     var latitude = configObj.latitude;
     var longitude = configObj.longitude;
     var myObject = {};
@@ -43,7 +43,7 @@ app.get('/', function (req, res) {
     myObject.geometry.properties = {};
     myObject.geometry.properties.node = "gas-field_stm-001"
 
-    res.json(myObject)
+    res.json(JSON.stringify(myObject))
   }).catch(err => {
     res.status(500).send(err.stack)
   })
