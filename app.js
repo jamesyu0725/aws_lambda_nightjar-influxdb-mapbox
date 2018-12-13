@@ -44,7 +44,7 @@ app.get('/', function (req, res) {
 
     res.json(myObject)
   }).catch(err => {
-    res.status(500).send(err.stack)
+    res.status(500).send("Error: " + err.stack)
   })
 })
 
