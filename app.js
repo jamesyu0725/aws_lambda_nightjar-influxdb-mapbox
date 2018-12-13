@@ -31,11 +31,11 @@ app.get('/', function (req, res) {
     SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
     FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
   `).then(result => {
-    var influxObj = JSON.parse(JSON.stringify(res.json(result)));    
-    var latitude = influxObj.latitude;
-    var longitude = influxObj.longitude;
+    influxObj = JSON.parse(JSON.stringify(res.json(result)));    
+    latitude = influxObj.latitude;
+    longitude = influxObj.longitude;
     alert(latitude);
-    var myObject = {};
+    myObject = {};
     myObject.geometry.push({});
     myObject.geometry[0].type = "Point"
     myObject.geometry[0].coordinates = [];
@@ -43,7 +43,7 @@ app.get('/', function (req, res) {
     myObject.geometry[0].properties.push({});
     myObject.geometry[0].properties[0].node = "gas-field_stm-001"
 
-    res.send(JSON.stringify(myObject));
+    res.send(JSON.stringify({"geometry": "test"}));
   }).catch(err => {
     res.status(500).send("Error: " + err.stack)
   })
