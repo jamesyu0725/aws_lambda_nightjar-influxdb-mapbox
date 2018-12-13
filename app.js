@@ -43,7 +43,7 @@ app.get('/', function (req, res) {
     myObject.geometry.properties = {};
     myObject.geometry.properties.node = "gas-field_stm-001"
 
-    res.json(result)
+    res.json(myObject)
   }).catch(err => {
     res.status(500).send(err.stack)
   })
