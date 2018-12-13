@@ -34,6 +34,7 @@ app.get('/', function (req, res) {
     var influxObj = JSON.parse(JSON.stringify(res.json(result)));    
     var latitude = influxObj.latitude;
     var longitude = influxObj.longitude;
+    alert(latitude);
     var myObject = {};
     myObject.geometry.push({});
     myObject.geometry[0].type = "Point"
