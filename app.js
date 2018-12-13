@@ -28,8 +28,10 @@ const influx = new Influx.InfluxDB({
 
 app.get('/', function (req, res) {
   influx.query(`
-    SELECT * FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 80h
+    SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
+    FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
   `).then(result => {
+
     res.json(result)
   }).catch(err => {
     res.status(500).send(err.stack)
