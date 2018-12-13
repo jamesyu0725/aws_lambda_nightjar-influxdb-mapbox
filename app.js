@@ -26,28 +26,52 @@ const influx = new Influx.InfluxDB({
   ]
 })
 
+
 app.get('/', function (req, res) {
-  influx.query(`
+  influx.writePoints([
+    {
+      "geometry": 
+        {
+          "type": "Point", 
+          "coordinates": [latitude1, longitude1]
+        },
+        "type": "Feature", 
+        "properties": 
+        {
+            "node":"test"
+        }
+    }
+  ]).then(() => {
+  return influx.query(`
     SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
     FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
-  `).then(result => {
-    influxObj = JSON.parse(JSON.stringify(res.json(result)));    
-    latitude = influxObj.latitude;
-    longitude = influxObj.longitude;
-    alert(latitude);
-    myObject = {};
-    myObject.geometry.push({});
-    myObject.geometry[0].type = "Point"
-    myObject.geometry[0].coordinates = [];
-    myObject.geometry[0].coordinates = [longitude, latitude];
-    myObject.geometry[0].properties.push({});
-    myObject.geometry[0].properties[0].node = "gas-field_stm-001"
-
-    res.send(JSON.stringify({"geometry": "test"}));
-  }).catch(err => {
-    res.status(500).send("Error: " + err.stack)
+  `)
   })
 })
+
+
+// app.get('/', function (req, res) {
+//   influx.query(`
+//     SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
+//     FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
+//   `).then(result => {
+//     influxObj = JSON.parse(JSON.stringify(res.json(result)));    
+//     latitude = influxObj.latitude;
+//     longitude = influxObj.longitude;
+//     alert(latitude);
+//     myObject = {};
+//     myObject.geometry.push({});
+//     myObject.geometry[0].type = "Point"
+//     myObject.geometry[0].coordinates = [];
+//     myObject.geometry[0].coordinates = [longitude, latitude];
+//     myObject.geometry[0].properties.push({});
+//     myObject.geometry[0].properties[0].node = "gas-field_stm-001"
+
+//     res.send(JSON.stringify({"geometry": "test"}));
+//   }).catch(err => {
+//     res.status(500).send("Error: " + err.stack)
+//   })
+// })
 
 // Handle CORS Proxy issue URL: https://enable-cors.org/server_expressjs.html
 app.use(function(req, res, next) {
