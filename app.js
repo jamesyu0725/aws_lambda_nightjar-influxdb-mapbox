@@ -66,8 +66,8 @@ app.get('/', function(req, res) {
     FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
   `)
   
-  latitude = result.results[0].series[0].values.latitude;
-  longitude = result.results[0].series[0].values.longitude;
+  latitude = result.results[0].series[0].values[0][0];
+  longitude = result.results[0].series[0].values[0][1];
   //test = JSON.parse(JSON.stringify(result));  
 
   res.send(
