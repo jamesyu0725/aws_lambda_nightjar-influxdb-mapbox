@@ -58,23 +58,25 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
+  var latitude = "";
+  var longitude = "";
   influx.query(`
     SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
     FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
   `).then(data => {
-    var latitude = data.results[0].series[0].values[0][0];
-    var longitude = data.results[0].series[0].values[0][1];
-    res.send(
-      {
-      "geometry": {
-          "type": "Point", 
-          "coordinates": [latitude, longitude]},
-          "type": "Feature", 
-          "properties": {
-              "node":"test"
-          }
-    });
+    latitude = data.results[0].series[0].values[0][0];
+    longitude = data.results[0].series[0].values[0][1];
   });  
+  res.send(
+    {
+    "geometry": {
+        "type": "Point", 
+        "coordinates": [latitude, longitude]},
+        "type": "Feature", 
+        "properties": {
+            "node":"test"
+        }
+  });
 });
 
 app.post('/', function(req, res) {
