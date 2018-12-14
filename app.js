@@ -26,29 +26,14 @@ const influx = new Influx.InfluxDB({
   ]
 })
 
-
 app.get('/', function (req, res) {
-  influx.writePoints([
-    {
-      "geometry": 
-        {
-          "type": "Point", 
-          "coordinates": [latitude1, longitude1]
-        },
-        "type": "Feature", 
-        "properties": 
-        {
-            "node":"test"
-        }
-    }
-  ]).then(() => {
-  return influx.query(`
+  var result = influx.query(`
     SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
     FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
   `)
-  })
-})
+  res.send("test:" +result)
 
+})
 
 // app.get('/', function (req, res) {
 //   influx.query(`
