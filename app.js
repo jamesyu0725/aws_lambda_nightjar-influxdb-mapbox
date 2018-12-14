@@ -60,16 +60,14 @@ app.use(function(req, res, next) {
 app.get('/', function(req, res) {
   var latitude = "0";
   var longitude = "0";
-  var test = "0";
-  var result = influx.query(`
+  influx.query(`
     SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
     FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
-  `)
+  `).then(data => {
+    latitude = data.results[0].series[0].values[0][0];
+    longitude = data.results[0].series[0].values[0][1];
+  });  
   
-  latitude = result.results[0].series[0].values[0][0];
-  longitude = result.results[0].series[0].values[0][1];
-  //test = JSON.parse(JSON.stringify(result));  
-
   res.send(
     {
     "geometry": {
@@ -77,8 +75,8 @@ app.get('/', function(req, res) {
         "coordinates": [latitude, longitude]},
         "type": "Feature", 
         "properties": {
-            "node": test
-          }
+            "node":"test"
+        }
   });
 });
 
