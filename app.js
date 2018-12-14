@@ -6,6 +6,7 @@ const os = require('os')
 var app = express();
 
 //Express Influx Documentation: https://node-influx.github.io/manual/tutorial.html
+// React Express Doc: https://expressjs.com/en/guide/writing-middleware.html
 const influx = new Influx.InfluxDB({
   database: 'telegraf',
   host: '52.204.180.208',
@@ -31,7 +32,10 @@ app.get('/', function (req, res) {
     SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
     FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
   `)
-  res.send("test:" +result)
+
+  influxObj = JSON.stringify(res.json(result)); 
+
+  res.send("test:" + influxObj);
 
 })
 
