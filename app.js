@@ -27,18 +27,6 @@ const influx = new Influx.InfluxDB({
   ]
 })
 
-app.get('/', function (req, res) {
-  var result = influx.query(`
-    SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
-    FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
-  `)
-
-  influxObj = JSON.stringify(res.json(result)); 
-
-  res.send("test:" + influxObj);
-
-})
-
 // app.get('/', function (req, res) {
 //   influx.query(`
 //     SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
@@ -69,18 +57,23 @@ app.use(function(req, res, next) {
   next();
 });
 
-// app.get('/', function(req, res) {
-//   res.send(
-//     {
-//     "geometry": {
-//         "type": "Point", 
-//         "coordinates": [127.19055820174076, -21.89972486964625]},
-//         "type": "Feature", 
-//         "properties": {
-//             "node":"test"
-//         }
-//   });
-// });
+app.get('/', function(req, res) {
+  influx.query(`
+    SELECT last(\"latitude1\") AS \"latitude\", last(\"longitude1\") AS \"longitude\", time 
+    FROM \"DHS\".\"autogen\".\"gas-field_stm-001\" where time > now() - 240h and \"latitude1\" <> 0
+  `)
+  
+  res.send(
+    {
+    "geometry": {
+        "type": "Point", 
+        "coordinates": [127.19055820174076, -21.89972486964625]},
+        "type": "Feature", 
+        "properties": {
+            "node":"test"
+        }
+  });
+});
 
 app.post('/', function(req, res) {
   res.send({
